@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import styles from './App.module.scss';
 
+// ----- hooks -----
+import { useBaseCounter } from './hooks/useBaseCounter';
+
+// -----  组件 -----
 import VirtualList from './components/VirtualLists';
 import VirtualListsDynamic from './components/VirtualListsDynamic';
 
@@ -10,6 +14,8 @@ import ControlledAndUnControlled from './components/isControlledComponent/Contro
 
 function App() {
   const [controlledValue, setControlledValue] = useState('propsValue');
+
+  const { dd, hh, mm, ss } = useBaseCounter({ time: 5 });
 
   return (
     <div className={styles.App}>
@@ -25,7 +31,10 @@ function App() {
 
       {/* 受控和非受控组件 */}
       {/* <ControlledAndUnControlled defaultValue="default" /> */}
-      <ControlledAndUnControlled value={controlledValue} onChange={() => setControlledValue('changePropsValue')} />
+      {/* <ControlledAndUnControlled value={controlledValue} onChange={() => setControlledValue('changePropsValue')} /> */}
+
+      {/* 定时器 hook 验证 */}
+      <div>{`${dd}-${hh}-${mm}-${ss}`}</div>
     </div>
   );
 }
